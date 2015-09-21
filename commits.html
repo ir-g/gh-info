@@ -52,7 +52,7 @@ li {
 window.onload=function(){
 
 var apiURLgen = 'https://api.github.com/repos/#{owner}/#{repo}/commits?per_page=3&sha=';
-var apiURL = apirssi(apiURLgen, {owner: getParams('owner'), repo: getParams('repo')});
+var apiURL = rssi(apiURLgen, {owner: getParams('owner'), repo: getParams('repo')});
 
 
 
