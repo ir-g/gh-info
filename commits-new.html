@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Commits</title>
-<script src="/libs.js"></script>
+<script src="libs.js"></script>
 <script type="text/html-tmpl" id="template-commit">
 
 </script>
@@ -22,7 +22,7 @@ window.onload=function(){
     var commits = "";
     data = JSON.parse(data);
     data.forEach(function(element, index, array){
-      var commits += tmplCommit(element);
+      commits += tmplCommit(element);
     });
     document.write(commits);
   }
