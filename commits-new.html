@@ -3,12 +3,6 @@
 <head>
 <title>Commits</title>
 <script src="libs.js"></script>
-<script type="text/html-tmpl" id="template-commit">
-#{commit.message} - #{commit.author}
-</script>
-<script type="text/html-tmpl" id="template-body">
-
-</script>
 <script>
 var tmplCommit, tmplBody, apiurl;
 window.onload=function(){
@@ -32,5 +26,11 @@ window.onload=function(){
 </head>
 <body>
 Page loading
+<script type="text/html-tmpl" id="template-commit">
+#{commit.message} - #{commit.author}
+</script>
+<script type="text/html-tmpl" id="template-body">
+
+</script>
 </body>
 </html>
