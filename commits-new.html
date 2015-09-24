@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Commits</title>
+<script src="/libs.js"></script>
+<script type="text/html-tmpl" id="template-commit">
+
+</script>
+<script type="text/html-tmpl" id="template-body">
+
+</script>
+<script>
+window.onload=function(){
+  var apiurl = fmt("https://api.github.com/repos/#{owner}/#{repo}/commits?per_page=#{page_count}")({
+    owner:      getParams('owner'),
+    repo:       getParams('repo'),
+    page_count: parseInt(getParams('page_count')).toString()||"5"
+  });
+  var tmplCommit = fmt(document.getElementById("template-commit").innerHTML);
+  var tmplBody = fmt(document.getElementById("template-body").innerHTML);
+  jx.load(apiurl ,function(data){
+    var commits = "";
+    data = JSON.parse(data);
+    data.forEach(function(element, index, array){
+      var commits += tmplCommit(element);
+    });
+    document.write(commits);
+  }
+}
+</script>
+</head>
+<body>
+Page loading
+</body>
+</html>
