@@ -9,9 +9,10 @@
 <script>
 var tmplBody, apiurl, d;
 window.onload=function(){
-  var apiurl = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}")({
+  var apiurl = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}?{{? it.access_token }}access_token{{=it.access_token}}{{?}}")({
     owner:      getParams('owner'),
-    repo:       getParams('repo')
+    repo:       getParams('repo'),
+    access_token: getParams('access_token')
   });
   tmplBody = doT.template(document.getElementById("template-body").innerHTML);
   jx.load(apiurl ,function(data){
