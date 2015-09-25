@@ -7,7 +7,7 @@
 <script>
 var tmplCommit, tmplBody, apiurl;
 window.onload=function(){
-  var apiurl = doT.template("https://api.github.com/repos/{{=owner}/{{=repo}}/commits?per_page={{=page_count}}")({
+  var apiurl = doT.template("https://api.github.com/repos/{{=it.owner}/{{=it.repo}}/commits?per_page={{=it.page_count}}")({
     owner:      getParams('owner'),
     repo:       getParams('repo'),
     page_count: parseInt(getParams('page_count')).toString()||"5"
