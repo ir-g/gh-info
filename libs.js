@@ -1,11 +1,41 @@
 // Include JX via http://www.openjs.com/scripts/jx/
 jx={getHTTPObject:function(){var A=false;if(typeof ActiveXObject!="undefined"){try{A=new ActiveXObject("Msxml2.XMLHTTP")}catch(C){try{A=new ActiveXObject("Microsoft.XMLHTTP")}catch(B){A=false}}}else{if(window.XMLHttpRequest){try{A=new XMLHttpRequest()}catch(C){A=false}}}return A},load:function(url,callback,format){var http=this.init();if(!http||!url){return }if(http.overrideMimeType){http.overrideMimeType("text/xml")}if(!format){var format="text"}format=format.toLowerCase();var now="uid="+new Date().getTime();url+=(url.indexOf("?")+1)?"&":"?";url+=now;http.open("GET",url,true);http.onreadystatechange=function(){if(http.readyState==4){if(http.status==200){var result="";if(http.responseText){result=http.responseText}if(format.charAt(0)=="j"){result=result.replace(/[\n\r]/g,"");result=eval("("+result+")")}if(callback){callback(result)}}else{if(error){error(http.status)}}}};http.send(null)},init:function(){return this.getHTTPObject()}}
 // Include templating
-/* RSSI
- * Ruby-like simple string interpolation for Node.js
- * Copyright (c) 2014 Mark Vasilkov (https://github.com/mvasilkov)
- * License: MIT */
-!function(){function e(e,f){var i=f&&f.blank,r=i?o:n;if((!f||!f.noCache)&&e in r)return r[e];var u=JSON.stringify(e).replace(/#\{(.*?)\}/g,function(e,n){return'"+(typeof obj["'+n+'"]!="undefined"?obj["'+n+'"]:"'+(i?"":e)+'")+"'});return r[e]=Function("obj",(i?t:"")+"return "+u)}var n={},o={},t='if (typeof obj == "undefined") obj = {}; ';"object"==typeof module&&module.exports?module.exports=e:"function"==typeof define&&define.amd?define(function(){return e}):"object"==typeof window&&(window.fmt=e)}();
+// Simple JavaScript Templating
+// John Resig - http://ejohn.org/ - MIT Licensed
+(function(){
+  var cache = {};
+ 
+  this.tmpl = function tmpl(str, data){
+    // Figure out if we're getting a template, or if we need to
+    // load the template - and be sure to cache the result.
+    var fn = !/\W/.test(str) ?
+      cache[str] = cache[str] ||
+        tmpl(document.getElementById(str).innerHTML) :
+     
+      // Generate a reusable function that will serve as a template
+      // generator (and which will be cached).
+      new Function("obj",
+        "var p=[],print=function(){p.push.apply(p,arguments);};" +
+       
+        // Introduce the data as local variables using with(){}
+        "with(obj){p.push('" +
+       
+        // Convert the template into pure JavaScript
+        str
+          .replace(/[\r\t\n]/g, " ")
+          .split("<%").join("\t")
+          .replace(/((^|%>)[^\t]*)'/g, "$1\r")
+          .replace(/\t=(.*?)%>/g, "',$1,'")
+          .split("\t").join("');")
+          .split("%>").join("p.push('")
+          .split("\r").join("\\'")
+      + "');}return p.join('');");
+   
+    // Provide some basic currying to the user
+    return data ? fn( data ) : fn;
+  };
+})();
 /* GET PARAMETER PARSING - VIA http://stackoverflow.com/a/1562161/1437706 */
 function getParams(x){
    return window.params[x];
