@@ -54,7 +54,25 @@ window.onload=function(){
 </head>
 <body>
 <div id="main">
-Page loading
+          <div class="nav">
+          
+        <a href="http://isaacrg.me/pagexml/">Home</a> &bull;
+          
+        <a href="http://isaacrg.me/pagexml/blog">Blog</a> &bull;
+          
+        <a href="http://isaacrg.me/pagexml/releases">Releases</a> 
+        
+      </div>
+      <br />
+      <h1>Repo Info</h1>
+      <h2>Commits</h2>
+      <hr />
+      <div id="message">
+        Page loading
+      </div>
+      <div id="footer">
+        ~
+      </div>
 </div>
 <script type="text/html-tmpl" id="template-commit">
 {{=it.commit.message}} - {{=it.commit.author.name}} <br />
