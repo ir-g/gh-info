@@ -12,7 +12,7 @@ window.onload=function(){
     repo:       getParams('repo'),
     page_count: parseInt(getParams('page_count')).toString()||"5"
   });
-  tmplCommit = dot.template(document.getElementById("template-commit").innerHTML);
+  tmplCommit = doT.template(document.getElementById("template-commit").innerHTML);
   tmplBody = doT.template(document.getElementById("template-body").innerHTML);
   jx.load(apiurl ,function(data){
     var commits = "";
