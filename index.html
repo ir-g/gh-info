@@ -7,7 +7,7 @@
 <script src="libs.js"></script>
 <script src="doT.min.js"></script>
 <script>
-var tmplBody, apiurl;
+var tmplBody, apiurl, d;
 window.onload=function(){
   var apiurl = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}")({
     owner:      getParams('owner'),
@@ -16,6 +16,7 @@ window.onload=function(){
   tmplBody = doT.template(document.getElementById("template-body").innerHTML);
   jx.load(apiurl ,function(data){
     data = JSON.parse(data);
+    d = data;
     document.getElementById("message").innerHTML = tmplBody(data);
   });
 };
