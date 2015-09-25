@@ -6,28 +6,33 @@
 <script>
 var tmplCommit, tmplBody, apiurl;
 window.onload=function(){
-  var apiurl = fmt("https://api.github.com/repos/#{owner}/#{repo}/commits?per_page=#{page_count}")({
+  var apiurl = doT.template("https://api.github.com/repos/#{owner}/#{repo}/commits?per_page=#{page_count}")({
     owner:      getParams('owner'),
     repo:       getParams('repo'),
     page_count: parseInt(getParams('page_count')).toString()||"5"
   });
-  tmplCommit = fmt(document.getElementById("template-commit").innerHTML);
-  tmplBody = fmt(document.getElementById("template-body").innerHTML);
+  tmplCommit = dot.template(document.getElementById("template-commit").innerHTML);
+  tmplBody = doT.template(document.getElementById("template-body").innerHTML);
   jx.load(apiurl ,function(data){
     var commits = "";
     data = JSON.parse(data);
     data.forEach(function(element, index, array){
       commits += tmplCommit(element);
     });
-    document.write(commits);
+    document.getElementById("main").innerHTML = commits;
   });
 };
 </script>
 </head>
 <body>
+<div id="main">
 Page loading
+</div>
 <script type="text/html-tmpl" id="template-commit">
 #{commit.message} - #{commit.author}
+</script>
+<script type="text/html-tmpl" id="template-body">
+
 </script>
 <script type="text/html-tmpl" id="template-body">
 
