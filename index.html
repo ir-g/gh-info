@@ -16,7 +16,7 @@ window.onload=function(){
   tmplBody = doT.template(document.getElementById("template-body").innerHTML);
   jx.load(apiurl ,function(data){
     data = JSON.parse(data);
-    document.getElementById("message").innerHTML = tmplBody({data});
+    document.getElementById("message").innerHTML = tmplBody(data);
   });
 };
 </script>
