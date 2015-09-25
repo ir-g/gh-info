@@ -9,7 +9,7 @@
 <script>
 var tmplBody, apiurl, d;
 window.onload=function(){
-  var apiurl = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}?{{? it.access_token }}access_token{{=it.access_token}}{{?}}")({
+  var apiurl = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}?{{? it.access_token }}access_token={{=it.access_token}}{{?}}")({
     owner:      getParams('owner'),
     repo:       getParams('repo'),
     access_token: getParams('access_token')
