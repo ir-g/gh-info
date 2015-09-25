@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Commits</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="assets/style.css" media="all" rel="stylesheet" />
+<script src="libs.js"></script>
+<script src="doT.min.js"></script>
+<script>
+var tmplBody, apiurl;
+window.onload=function(){
+  var apiurl = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}")({
+    owner:      getParams('owner'),
+    repo:       getParams('repo')
+  });
+  tmplBody = doT.template(document.getElementById("template-body").innerHTML);
+  jx.load(apiurl ,function(data){
+    data = JSON.parse(data);
+    document.getElementById("message").innerHTML = tmplBody({data});
+  });
+};
+</script>
+</head>
+<body>
+<div id="main">
+  <div class="nav">
+    <a href="about">About</a> &bull;
+  </div>
+  <br />
+  <h1>Repo Info</h1>
+  <h2>Home</h2>
+  <hr />
+  <div id="message">
+    Page loading
+  </div>
+  <div id="footer">
+    ~
+  </div>
+</div>
+<script type="text/html-tmpl" id="template-body">
+<b>{{=full_name}}</b> is a repository mainly written in {{=language}}, and currently has {{issues_count}} open issues.
+</script>
+</body>
+</html>
