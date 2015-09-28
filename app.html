@@ -14,8 +14,8 @@ apiUrl = [];
 apiUrl['repo/home']    = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}?{{? it.access_token }}access_token={{=it.access_token}}{{?}}");
 apiUrl['repo/commits'] = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}/commits?per_page={{=it.page_count}}?{{? it.access_token }}&access_token={{=it.access_token}}{{?}}");
 tmpl = [];
-tmpl['repo/home']      = doT.template(document.getElementById("template-home"));
-tmpl['repo/commits']   = doT.template(document.getElementById("template-commit"));
+tmpl['repo/home']      = doT.template(document.getElementById("template-home").innerHTML);
+tmpl['repo/commits']   = doT.template(document.getElementById("template-commit").innerHTML);
 routie('repo/:owner/:repo/home', function(owner,repo) {
   event = "repo/home";
   var requrl   = apiUrl[event]({
