@@ -19,7 +19,7 @@ tmpl['repo/commits']   = doT.template(document.getElementById("template-commit")
 routie('repo/:owner/:repo/home', function(owner,repo) {
   event = "repo/home";
   var requrl   = apiUrl[event]({
-    owner: owner, repo: repo, access_token: "" || getParams('access_token')
+    owner: owner, repo: repo, access_token: "" || window.location.search.substring(0)
   });
   var template = tmpl[event];
   console.log("event triggered"+owner+repo);
