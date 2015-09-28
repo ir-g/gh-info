@@ -18,7 +18,7 @@ tmpl['repo/commits']   = doT.template(document.getElementById("template-commit")
 routie('repo/:owner/:repo/home', function(owner,repo) {
   event = "repo/home";
   console.log("event triggered"+owner+repo);
-  jx.load(apiurl[event] ,function(data){
+  jx.load(apiUrl[event] ,function(data){
     data = JSON.parse(data);
     d = data;
     document.getElementById("message").innerHTML = tmpl[event](data);
@@ -27,7 +27,7 @@ routie('repo/:owner/:repo/home', function(owner,repo) {
 routie('repo/:owner/:repo/commits', function(owner,repo) {
   event = "repo/commits";
   console.log("event triggered"+owner+repo);
-  jx.load(apiurl[event] ,function(data){
+  jx.load(apiUrl[event] ,function(data){
     data = JSON.parse(data);
     d = data;
     document.getElementById("message").innerHTML = tmpl[event](data);
