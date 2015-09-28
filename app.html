@@ -25,7 +25,7 @@ routie('repo/:owner/:repo/home', function(owner,repo) {
   console.log("event triggered"+owner+repo);
   console.log(requrl);
   console.log(template);
-  jx.load(apiUrl[event] ,function(data){
+  jx.load(requrl ,function(data){
     data = JSON.parse(data);
     d = data;
     document.getElementById("message").innerHTML = template(data);
