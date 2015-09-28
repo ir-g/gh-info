@@ -12,6 +12,6 @@ if(window.location.search.length>0){
     return params;
   }();
   function getParams(x){
-     return window.params[x];
+     return window.params[x] || "";
   }
 }
