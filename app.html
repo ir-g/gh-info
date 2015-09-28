@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Repo Info &bull; Commits</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="assets/style.css" media="all" rel="stylesheet" />
+<script src="assets/libs.js"></script>
+<script src="assets/doT.min.js"></script>
+<script src="assets/routie.js"></script>
+<script>
+window.onload=function(){
+var apiUrl = [];
+apiUrl['repo/home']    = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}?{{? it.access_token }}access_token={{=it.access_token}}{{?}}");
+apiUrl['repo/commits'] = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}/commits?per_page={{=it.page_count}}?{{? it.access_token }}&access_token={{=it.access_token}}{{?}}");
+
+routie('repo/:owner/:repo/home', function(owner,repo) {
+  
+});
+routie('repo/:owner/:repo/home', function(owner,repo) {
+});
+}
+</script>
+</head>
+<body>
+<div id="main">
+          <div class="nav">
+          
+        <a href="index">Home</a> &bull;
+      </div>
+      <br />
+      <h1>Repo Info</h1>
+      <h2>Commits</h2>
+      <hr />
+      <div id="message">
+        Page loading
+      </div>
+      <div id="footer">
+        ~
+      </div>
+</div>
+<script type="text/html-tmpl" id="template-commit">
+{{=it.commit.message}} - {{=it.commit.author.name}} <br />
+</script>
+<script type="text/html-tmpl" id="template-body">
+
+</script>
+<script type="text/html-tmpl" id="template-body">
+
+</script>
+</body>
+</html>
