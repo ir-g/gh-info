@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Repo Info &bull; Commits</title>
+<title>Repo Info</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="assets/style.css" media="all" rel="stylesheet" />
 <script src="assets/libs.js"></script>
@@ -14,7 +14,7 @@ apiUrl['repo/home']    = doT.template("https://api.github.com/repos/{{=it.owner}
 apiUrl['repo/commits'] = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}/commits?per_page={{=it.page_count}}?{{? it.access_token }}&access_token={{=it.access_token}}{{?}}");
 
 routie('repo/:owner/:repo/home', function(owner,repo) {
-  
+  console.log("event triggered"+owner+repo);
 });
 routie('repo/:owner/:repo/home', function(owner,repo) {
 });
