@@ -12,11 +12,26 @@ window.onload=function(){
 var apiUrl = [];
 apiUrl['repo/home']    = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}?{{? it.access_token }}access_token={{=it.access_token}}{{?}}");
 apiUrl['repo/commits'] = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}/commits?per_page={{=it.page_count}}?{{? it.access_token }}&access_token={{=it.access_token}}{{?}}");
-
+var tmpl = [];
+tmpl['repo/home']      = doT.template(document.getElementById("template-home"));
+tmpl['repo/commits']   = doT.template(document.getElementById("template-commit"));
 routie('repo/:owner/:repo/home', function(owner,repo) {
+  event = "repo/home";
   console.log("event triggered"+owner+repo);
+  jx.load(apiurl[event] ,function(data){
+    data = JSON.parse(data);
+    d = data;
+    document.getElementById("message").innerHTML = tmpl[event](data);
+  });
 });
-routie('repo/:owner/:repo/home', function(owner,repo) {
+routie('repo/:owner/:repo/commits', function(owner,repo) {
+  event = "repo/commits";
+  console.log("event triggered"+owner+repo);
+  jx.load(apiurl[event] ,function(data){
+    data = JSON.parse(data);
+    d = data;
+    document.getElementById("message").innerHTML = tmpl[event](data);
+  });
 });
 }
 </script>
@@ -39,10 +54,12 @@ routie('repo/:owner/:repo/home', function(owner,repo) {
       </div>
 </div>
 <script type="text/html-tmpl" id="template-commit">
-{{=it.commit.message}} - {{=it.commit.author.name}} <br />
+{{~it :value:index}}
+  {{=value.commit.message}} - {{=value.commit.author.name}} <br />
+{{~}}
 </script>
-<script type="text/html-tmpl" id="template-body">
-
+<script type="text/html-tmpl" id="template-home">
+<b>{{=it.full_name}}</b> is a repository mainly written in {{=it.language}}, and currently has {{=it.issues_count || 'no'}} open issues. It has been starred by {{=it.stargazers_count || 'nobody'}} and is being followed by {{=it.watchers_count||'nobody'}}.
 </script>
 <script type="text/html-tmpl" id="template-body">
 
