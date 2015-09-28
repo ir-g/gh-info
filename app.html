@@ -8,16 +8,19 @@
 <script src="assets/doT.min.js"></script>
 <script src="assets/routie.js"></script>
 <script>
+var apiUrl, tmple;
 window.onload=function(){
-var apiUrl = [];
+apiUrl = [];
 apiUrl['repo/home']    = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}?{{? it.access_token }}access_token={{=it.access_token}}{{?}}");
 apiUrl['repo/commits'] = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}/commits?per_page={{=it.page_count}}?{{? it.access_token }}&access_token={{=it.access_token}}{{?}}");
-var tmpl = [];
+tmpl = [];
 tmpl['repo/home']      = doT.template(document.getElementById("template-home"));
 tmpl['repo/commits']   = doT.template(document.getElementById("template-commit"));
 routie('repo/:owner/:repo/home', function(owner,repo) {
   event = "repo/home";
   console.log("event triggered"+owner+repo);
+  console.log(apiUrl[event]);
+  console.log(tmpl['apiUrl[event]']);
   jx.load(apiUrl[event] ,function(data){
     data = JSON.parse(data);
     d = data;
