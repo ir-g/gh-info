@@ -23,8 +23,6 @@ routie('repo/:owner/:repo/home', function(owner,repo) {
   });
   var template = tmpl[event];
   console.log("event triggered"+owner+repo);
-  console.log(requrl);
-  console.log(template);
   jx.load(requrl ,function(data){
     data = JSON.parse(data);
     d = data;
@@ -33,11 +31,15 @@ routie('repo/:owner/:repo/home', function(owner,repo) {
 });
 routie('repo/:owner/:repo/commits', function(owner,repo) {
   event = "repo/commits";
-  console.log("event triggered"+owner+repo);
-  jx.load(apiUrl[event] ,function(data){
+  var requrl   = apiUrl[event]({
+    owner: owner, repo: repo, access_token: "" || window.location.search.substring(1)
+  });
+  var template = tmpl[event];
+  console.log("event triggered - commits"+owner+repo);
+  jx.load(requrl ,function(data){
     data = JSON.parse(data);
     d = data;
-    document.getElementById("message").innerHTML = tmpl[event](data);
+    document.getElementById("message").innerHTML = template(data);
   });
 });
 }
