@@ -25,6 +25,8 @@ routie('repo/:owner/:repo/home', function(owner,repo) {
   console.log("event triggered"+owner+repo);
   jx.load(requrl ,function(data){
     data = JSON.parse(data);
+    data._req.owner = owner;
+    data._req.repo  = repo;
     d = data;
     document.getElementById("message").innerHTML = template(data);
   });
@@ -38,6 +40,8 @@ routie('repo/:owner/:repo/commits', function(owner,repo) {
   console.log("event triggered - commits"+owner+repo);
   jx.load(requrl ,function(data){
     data = JSON.parse(data);
+    data._req.owner = owner;
+    data._req.repo  = repo;
     d = data;
     document.getElementById("message").innerHTML = template(data);
   });
