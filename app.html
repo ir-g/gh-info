@@ -8,7 +8,7 @@
 <script src="assets/doT.min.js"></script>
 <script src="assets/routie.js"></script>
 <script>
-var apiUrl, tmple, d;
+var apiUrl, tmpl, d;
 window.onload=function(){
 apiUrl = [];
 apiUrl['repo/home']    = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}?{{? it.access_token }}access_token={{=it.access_token}}{{?}}");
