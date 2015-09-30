@@ -1,4 +1,4 @@
-# repo-info
+# gh-info
 
 An example single page application, using the Github API. Less than feature complete, but easily extendable/modifiable.
 
