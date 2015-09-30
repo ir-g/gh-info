@@ -69,6 +69,7 @@ routie('repo/:owner/:repo/commits', function(owner,repo) {
       </div>
 </div>
 <script type="text/html-tmpl" id="template-commit">
+<em><a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/home">Back</a></em>
 {{~it :value:index}}
   <a href="" class="commit-message">{{=value.commit.message}}</a> - <a href="" class="commit-author gh-user">{{=value.commit.author.name}}</a> <br />
 {{~}}
