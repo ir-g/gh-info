@@ -9,5 +9,5 @@ This application uses the following libraries:
 
 This application uses the following url formats:
 
-* `#repo/OWNER/REPO/home` [~](http://ir-g.uk/repo-info/#repo/isaacrg/repo-info/home)
-* `#repo/OWNER/REPO/commits` [~](http://ir-g.uk/repo-info/#repo/isaacrg/repo-info/commits)
+* [~](http://ir-g.uk/repo-info/#repo/isaacrg/repo-info/home)    `#repo/OWNER/REPO/home` 
+* [~](http://ir-g.uk/repo-info/#repo/isaacrg/repo-info/commits) `#repo/OWNER/REPO/commits`
