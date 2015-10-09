@@ -53,20 +53,19 @@ routie('repo/:owner/:repo/commits', function(owner,repo) {
 </head>
 <body>
 <div id="main">
-          <div class="nav">
-          
-        <a href="index">Home</a> &bull;
-      </div>
-      <br />
-      <h1>GH Info</h1>
-      <h2></h2>
-      <hr />
-      <div id="message">
-        Page loading
-      </div>
-      <div id="footer">
-        ~
-      </div>
+  <div class="nav">
+    <a href="index">Home</a> &bull;
+  </div>
+  <br />
+  <h1>GH Info</h1>
+  <h2></h2>
+  <hr />
+  <div id="message">
+    Page loading
+  </div>
+  <div id="footer">
+    ~
+  </div>
 </div>
 <script type="text/html-tmpl" id="template-commit">
 <em><a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/home">Back</a></em>
