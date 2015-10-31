@@ -21,7 +21,7 @@
   tmpl['repo/commits']   = doT.template(document.getElementById("template-commit").innerHTML);
   tmpl['repo/issues']    = doT.template(document.getElementById("template-issues").innerHTML);
   tmpl['repo/labels']    = doT.template(document.getElementById("template-labels").innerHTML);
-  tmpl['repo/labels']    = doT.template(document.getElementById("template-labels").innerHTML);
+  tmpl['repo/collaborators']    = doT.template(document.getElementById("template-collaborators").innerHTML);
   routie('repo/:owner/:repo/home', function(owner,repo) {
     event = "repo/home";
     var requrl   = apiUrl[event]({
