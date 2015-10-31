@@ -94,6 +94,26 @@
       document.getElementById("message").innerHTML = template(data);
     });
   });
+  routie('repo/:owner/:repo/collaborators/*', function(owner,repo,params) {
+    event = "repo/collaborators";
+    var requrl   = apiUrl[event]({
+      owner: owner, repo: repo, params: params || "", access_token: "" || window.location.search.substring(1)
+    });
+    var template = tmpl[event];
+    console.log("event triggered - commits"+owner+repo);
+    jx.load(requrl ,function(data){
+      data = JSON.parse(data);
+      data._req = {}
+      data._req.owner = owner;
+      data._req.repo  = repo;
+      data._req.param = params;
+      d = data;
+      console.log(data);
+      console.log(template);
+      console.log(template(data));
+      document.getElementById("message").innerHTML = template(data);
+    });
+  });
   }
 </script>
 </head>
