@@ -99,6 +99,10 @@
 <script type="text/html-tmpl" id="template-issues">
 <em><a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/home">Back</a></em>
 <br />
+<a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/issues">All</a>
+<a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/issues?state=open">Open</a>
+<a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/issues?state=close">Close</a>
+<br />
 {{~it :value:index}}
   {{=value.title}} <a href="{{=value.html_url}}">~</a> - {{=value.user.login}} <a href="{{=value.user.html_url}}">~</a> <br />
 {{~}}
@@ -108,7 +112,9 @@
   <b>{{=it.full_name}}</b> is a repository mainly written in {{=it.language}}, and currently has {{=it.issues_count || 'no'}} open issues. It has been starred by {{=it.stargazers_count || 'nobody'}} and is being followed by {{=it.watchers_count||'nobody'}}.
 </p>
 <p>
-  <b>View:</b> <a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/commits">Commits</a>
+  <b>View:</b>
+  <a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/commits">Commits</a> &bull;
+  <a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/issues">Issues</a>
 </p>
 </script>
 <script type="text/html-tmpl" id="template-body">
