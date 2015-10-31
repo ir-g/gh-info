@@ -99,9 +99,9 @@
 <script type="text/html-tmpl" id="template-issues">
 <em><a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/home">Back</a></em>
 <br />
-<a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/issues">All</a>
-<a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/issues?state=open">Open</a>
-<a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/issues?state=close">Close</a>
+<a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/issues/state=all">All</a> 
+<a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/issues/state=open">Open</a> 
+<a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/issues/state=closed">Close</a>
 <br />
 {{~it :value:index}}
   {{=value.title}} <a href="{{=value.html_url}}">~</a> - {{=value.user.login}} <a href="{{=value.user.html_url}}">~</a> <br />
