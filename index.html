@@ -12,8 +12,9 @@
   window.onload=function(){
   apiUrl = [];
   apiUrl['repo/home']    = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}?{{? it.access_token }}access_token={{=it.access_token}}{{?}}");
-  apiUrl['repo/commits'] = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}/commits?per_page={{=it.page_count}}?{{? it.access_token }}&access_token={{=it.access_token}}{{?}}");
+  apiUrl['repo/commits'] = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}/commits?{{=it.params}}&{{? it.access_token }}&access_token={{=it.access_token}}{{?}}");
   apiUrl['repo/issues']  = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}/issues?{{=it.params}}{{? it.access_token }}&access_token={{=it.access_token}}{{?}}");
+  apiUrl['repo/labels']  = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}/labels?{{=it.params}}{{? it.access_token }}&access_token={{=it.access_token}}{{?}}");
   tmpl = [];
   tmpl['repo/home']      = doT.template(document.getElementById("template-home").innerHTML);
   tmpl['repo/commits']   = doT.template(document.getElementById("template-commit").innerHTML);
@@ -34,10 +35,10 @@
       document.getElementById("message").innerHTML = template(data);
     });
   });
-  routie('repo/:owner/:repo/commits', function(owner,repo) {
+  routie('repo/:owner/:repo/commits/*', function(owner,repo,params) {
     event = "repo/commits";
     var requrl   = apiUrl[event]({
-      owner: owner, repo: repo, access_token: "" || window.location.search.substring(1)
+      owner: owner, repo: repo, params: params || "", access_token: window.location.search.substring(1) || ""
     });
     var template = tmpl[event];
     console.log("event triggered - commits"+owner+repo);
@@ -112,7 +113,7 @@
 </p>
 <p>
   <b>View:</b>
-  <a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/commits">Commits</a> &bull;
+  <a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/commits/">Commits</a> &bull;
   <a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/issues/">Issues</a>
 </p>
 </script>
