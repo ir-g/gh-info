@@ -90,16 +90,15 @@
 <em><a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/home">Back</a></em>
 <br />
 {{~it :value:index}}
-  {{=value.commit.message}} <a href="{{=value.html_url}}">~</a> - {{=value.commit.users.login}} <a href="{{=value.users.html_url}}">~</a> <br />
+  {{=value.commit.message}} <a href="{{=value.html_url}}">~</a> - {{=value.commit.author.name}} <a href="{{=value.author.html_url}}">~</a> <br />
 {{~}}
 </script>
 <script type="text/html-tmpl" id="template-issues">
-<p>
-  <b>{{=it.full_name}}</b> is a repository mainly written in {{=it.language}}, and currently has {{=it.issues_count || 'no'}} open issues. It has been starred by {{=it.stargazers_count || 'nobody'}} and is being followed by {{=it.watchers_count||'nobody'}}.
-</p>
-<p>
-  <b>View:</b> <a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/commits">Commits</a>
-</p>
+<em><a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/home">Back</a></em>
+<br />
+{{~it :value:index}}
+  {{=value.commit.message}} <a href="{{=value.html_url}}">~</a> - {{=value.commit.users.login}} <a href="{{=value.users.html_url}}">~</a> <br />
+{{~}}
 </script>
 <script type="text/html-tmpl" id="template-home">
 <p>
