@@ -64,6 +64,9 @@
       data._req.repo  = repo;
       data._req.param = params;
       d = data;
+      console.log(data);
+      console.log(template);
+      console.log(template(data));
       document.getElementById("message").innerHTML = template(data);
     });
   });
