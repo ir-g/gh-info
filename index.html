@@ -72,7 +72,6 @@
       document.getElementById("message").innerHTML = template(data);
     });
   });
-  }
   routie('repo/:owner/:repo/labels/*', function(owner,repo,params) {
     event = "repo/labels";
     var requrl   = apiUrl[event]({
