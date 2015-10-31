@@ -19,6 +19,7 @@
   tmpl['repo/home']      = doT.template(document.getElementById("template-home").innerHTML);
   tmpl['repo/commits']   = doT.template(document.getElementById("template-commit").innerHTML);
   tmpl['repo/issues']    = doT.template(document.getElementById("template-issues").innerHTML);
+  tmpl['repo/labels']    = doT.template(document.getElementById("template-labels").innerHTML);
   routie('repo/:owner/:repo/home', function(owner,repo) {
     event = "repo/home";
     var requrl   = apiUrl[event]({
@@ -53,6 +54,27 @@
   });
   routie('repo/:owner/:repo/issues/*', function(owner,repo,params) {
     event = "repo/issues";
+    var requrl   = apiUrl[event]({
+      owner: owner, repo: repo, params: params || "", access_token: "" || window.location.search.substring(1)
+    });
+    var template = tmpl[event];
+    console.log("event triggered - commits"+owner+repo);
+    jx.load(requrl ,function(data){
+      data = JSON.parse(data);
+      data._req = {}
+      data._req.owner = owner;
+      data._req.repo  = repo;
+      data._req.param = params;
+      d = data;
+      console.log(data);
+      console.log(template);
+      console.log(template(data));
+      document.getElementById("message").innerHTML = template(data);
+    });
+  });
+  }
+  routie('repo/:owner/:repo/labels/*', function(owner,repo,params) {
+    event = "repo/labels";
     var requrl   = apiUrl[event]({
       owner: owner, repo: repo, params: params || "", access_token: "" || window.location.search.substring(1)
     });
@@ -107,6 +129,13 @@
   {{=value.title}} <a href="{{=value.html_url}}">~</a> - {{=value.user.login}} <a href="{{=value.user.html_url}}">~</a> <br />
 {{~}}
 </script>
+<script type="text/html-tmpl" id="template-labels">
+<em><a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/home">Back</a></em>
+<br />
+{{~it :value:index}}
+  {{=value.name}} <a href="{{=value.url}}">~</a> <br />
+{{~}}
+</script>
 <script type="text/html-tmpl" id="template-home">
 <p>
   <b>{{=it.full_name}}</b> is a repository mainly written in {{=it.language}}, and currently has {{=it.issues_count || 'no'}} open issues. It has been starred by {{=it.stargazers_count || 'nobody'}} and is being followed by {{=it.watchers_count||'nobody'}}.
@@ -114,7 +143,8 @@
 <p>
   <b>View:</b>
   <a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/commits/">Commits</a> &bull;
-  <a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/issues/">Issues</a>
+  <a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/issues/">Issues</a> &bull;
+  <a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/labels/">Labels</a> &bull;
 </p>
 </script>
 <script type="text/html-tmpl" id="template-body">
