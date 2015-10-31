@@ -100,7 +100,7 @@
 <em><a href="#repo/{{=it._req.owner}}/{{=it._req.repo}}/home">Back</a></em>
 <br />
 {{~it :value:index}}
-  {{=value.title}} <a href="{{=value.html_url}}">~</a> - {{=value.commit.users.login}} <a href="{{=value.users.html_url}}">~</a> <br />
+  {{=value.title}} <a href="{{=value.html_url}}">~</a> - {{=value.commit.user.login}} <a href="{{=value.user.html_url}}">~</a> <br />
 {{~}}
 {{=value}}
 </script>
