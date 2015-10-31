@@ -12,7 +12,7 @@
   window.onload=function(){
   apiUrl = [];
   apiUrl['repo/home']    = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}?{{? it.access_token }}access_token={{=it.access_token}}{{?}}");
-  apiUrl['repo/commits'] = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}/commits?{{=it.params}}&{{? it.access_token }}&access_token={{=it.access_token}}{{?}}");
+  apiUrl['repo/commits'] = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}/commits?{{=it.params}}{{? it.access_token }}&access_token={{=it.access_token}}{{?}}");
   apiUrl['repo/issues']  = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}/issues?{{=it.params}}{{? it.access_token }}&access_token={{=it.access_token}}{{?}}");
   apiUrl['repo/labels']  = doT.template("https://api.github.com/repos/{{=it.owner}}/{{=it.repo}}/labels?{{=it.params}}{{? it.access_token }}&access_token={{=it.access_token}}{{?}}");
   tmpl = [];
