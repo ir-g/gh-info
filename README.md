@@ -13,8 +13,10 @@ This application uses the following libraries:
 
 This application uses the following url formats:
 
-* [~](http://isaacrg.github.io/gh-info/#repo/isaacrg/repo-info/home)    `#repo/OWNER/REPO/home` 
-* [~](http://isaacrg.github.io/gh-info/#repo/isaacrg/repo-info/commits) `#repo/OWNER/REPO/commits`
+* [~](http://isaacrg.github.io/gh-info/#repo/isaacrg/gh-info/commits/)    `#repo/OWNER/REPO/commits/` 
+* [~](http://isaacrg.github.io/gh-info/#repo/isaacrg/gh-info/commits/author=isaacrg) `#repo/OWNER/REPO/commits/author=isaacrg`
+
+Parameters can be applied to a particular page, eg. `#repo/isaacrg/gh-info/commits/author=isaacrg&per_page=2` - these parameters match the GET query parameters of the relevant Github API options. Note also that the developer consoles in browser can give you an insight into what is going on behind the scenes, in terms of network requests.
 
 The example pages in the "old" folder demonstrate how this project could be done with being physically separate, but the result is too slow. The folder remains to showcase a similar technique to [gh-edit](http://github.com/isaacrg/gh-edit)
 
